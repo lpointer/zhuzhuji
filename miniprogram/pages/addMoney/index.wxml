@@ -1,0 +1,93 @@
+<i-tabs current="{{ current }}" bindchange="handleChange">
+    <i-tab key="0" title="支出"></i-tab>
+    <i-tab key="1" title="收入"></i-tab>
+</i-tabs>
+<form bindsubmit='searchBox'>
+
+<view wx:if="{{ current == '0'}}">
+  <i-panel title="输入金额">
+      <i-input bind:change="zcMoneyInput" type="text" title="金额"  placeholder="￥{{zcmoney}}" />
+  </i-panel>
+
+  <i-grid>
+    <i-grid-item key="index" wx:for="{{zcData1}}" wx:key="index" class="{{isSele==item.id?'redbackgroun':'unredbackgroun'}} i-grid-item" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+        <i-grid-icon data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+            <image class="iconfont {{item.icon}} icon-default-size icon-default-color" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun" /> 
+        </i-grid-icon>
+        <i-grid-label data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">{{item.name}}</i-grid-label>
+    </i-grid-item>
+    
+</i-grid>
+
+  <i-grid>
+    <i-grid-item key="index" wx:for="{{zcData2}}" wx:key="index" class="{{isSele==item.id?'redbackgroun':'unredbackgroun'}}" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+        <i-grid-icon data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+            <image class="iconfont {{item.icon}} icon-default-size icon-default-color" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun" /> 
+        </i-grid-icon>
+        <i-grid-label data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">{{item.name}}</i-grid-label>
+    </i-grid-item>
+    
+</i-grid>
+<i-grid>
+    <i-grid-item key="index" wx:for="{{zcData3}}" wx:key="index" class="{{isSele==item.id?'redbackgroun':'unredbackgroun'}}" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+        <i-grid-icon data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+            <image class="iconfont {{item.icon}} icon-default-size icon-default-color" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun" /> 
+        </i-grid-icon>
+        <i-grid-label data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">{{item.name}}</i-grid-label>
+    </i-grid-item>
+    
+</i-grid>
+
+</view>
+
+
+<view wx:else>
+  <i-panel title="输入金额">
+      <i-input bind:change="srMoneyInput" type="text" title="金额" placeholder="￥{{srmoney}}" />
+  </i-panel>
+
+    <i-grid>
+      <i-grid-item key="index" wx:for="{{srData1}}" wx:key="index" class="{{isSele==item.id?'redbackgroun':'unredbackgroun'}}" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+          <i-grid-icon data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+              <image class="iconfont {{item.icon}} icon-default-size icon-default-color" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun" /> 
+          </i-grid-icon>
+          <i-grid-label data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">{{item.name}}</i-grid-label>
+      </i-grid-item>
+      
+  </i-grid>
+
+    <i-grid>
+      <i-grid-item key="index" wx:for="{{srData2}}" wx:key="index" class="{{isSele==item.id?'redbackgroun':'unredbackgroun'}}" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+          <i-grid-icon data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">
+              <image class="iconfont {{item.icon}} icon-default-size icon-default-color" data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun" /> 
+          </i-grid-icon>
+          <i-grid-label data-id="{{item.id}}" data-icon="{{item.icon}}" data-name="{{item.name}}" catchtap="setBackgroun">{{item.name}}</i-grid-label>
+      </i-grid-item>
+      
+  </i-grid>
+
+  
+</view>
+
+<view style='margin-top:30rpx'>
+<i-panel>
+      <view class='sele-date'>
+        <text class="date_text">{{date}}</text>
+        <picker class='date_picker'
+      mode="date"
+      value="{{seledate}}"
+      start="2018-01-01"
+      end="{{date}}"
+      bindchange="bindDateChange"
+    >
+    <button type='date'>{{seledate}}</button>
+    </picker>
+      </view>
+      <i-input bind:change="remarksInput" title="备注" placeholder="{{current == 0 ? zcremarks : srremarks}}" />
+      
+      <button bindtap='add' type="primary">
+        <text space="ensp">确  认</text>
+      </button>
+</i-panel>
+</view>
+</form>
